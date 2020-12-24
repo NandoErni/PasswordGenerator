@@ -1,20 +1,23 @@
 package com.example.passwordgenerator.ui.home;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.passwordgenerator.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class HomeFragment extends Fragment {
@@ -55,6 +58,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
+        final FloatingActionButton fab = homeView.findViewById(R.id.copy_password);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyPasswordToClipboard();
+            }
+        });
     }
 
     private PasswordGenerationConfig getPasswordConfig() {
@@ -69,5 +80,16 @@ public class HomeFragment extends Fragment {
                 includeLowercase.isChecked(),
                 includeUppercase.isChecked(),
                 includeSpecial.isChecked());
+    }
+
+    public void copyPasswordToClipboard() {
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Password", homeViewModel.getPassword().getValue());
+        clipboard.setPrimaryClip(clip);
+        print(getResources().getString(R.string.copyPassword));
+    }
+
+    private void print(String message) {
+        Toast.makeText(homeView.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

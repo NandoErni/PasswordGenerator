@@ -8,4 +8,6 @@
     <string name="switch_include_lowercase_letters">Lowercase letters</string>
     <string name="switch_include_uppercase_letters">Uppercase letters</string>
     <string name="switch_include_special_characters">Special characters</string>
+    <string name="password">Password</string>
+    <string name="copyPassword">Copied the password to clipboard.</string>
 </resources>

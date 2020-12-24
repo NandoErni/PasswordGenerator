@@ -1,10 +1,5 @@
 package com.example.passwordgenerator.ui.home;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
