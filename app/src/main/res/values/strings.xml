@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="btn_generate">Generate</string>
+    <string name="switch_include_numbers">Numbers</string>
+    <string name="switch_include_lowercase_letters">Lowercase letters</string>
+    <string name="switch_include_uppercase_letters">Uppercase letters</string>
+    <string name="switch_include_special_characters">Special characters</string>
 </resources>
