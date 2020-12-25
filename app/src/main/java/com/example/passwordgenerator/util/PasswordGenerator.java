@@ -8,17 +8,15 @@ import java.util.List;
 import java.util.Random;
 
 public class PasswordGenerator {
-    private static final String SPECIAL_CHARACTER_KEY = "specialCharacterPreference";
+    public static final String SPECIAL_CHARACTER_KEY = "specialCharacterPreference";
 
     public static final List<Character> DEFAULT_SPECIAL_CHARACTERS = Arrays.asList('$', '#', '&', '!', '%', '*');
 
     private final Random random;
-    private final SharedPreferencesHandler sharedPreferencesHandler;
     private List<Character> specialCharacters;
 
     public PasswordGenerator() {
         random = new Random();
-        sharedPreferencesHandler = new SharedPreferencesHandler();
         specialCharacters = new ArrayList<>();
     }
 
@@ -77,11 +75,11 @@ public class PasswordGenerator {
     }
 
     public void saveSpecialCharacter(List<Character> specialCharacters, Context context) {
-        sharedPreferencesHandler.save(SPECIAL_CHARACTER_KEY, specialCharacters, context);
+        SharedPreferencesHandler.save(SPECIAL_CHARACTER_KEY, specialCharacters, context);
         this.specialCharacters = specialCharacters;
     }
 
     public List<Character> readSpecialCharacter(Context context) {
-        return sharedPreferencesHandler.readCharacterList(SPECIAL_CHARACTER_KEY, context);
+        return SharedPreferencesHandler.readCharacterList(SPECIAL_CHARACTER_KEY, context);
     }
 }

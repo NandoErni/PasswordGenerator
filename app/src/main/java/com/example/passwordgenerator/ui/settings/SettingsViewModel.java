@@ -1,19 +1,18 @@
 package com.example.passwordgenerator.ui.settings;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import android.content.Context;
+
 import androidx.lifecycle.ViewModel;
 
+import com.example.passwordgenerator.util.PasswordGenerator;
+import com.example.passwordgenerator.util.SharedPreferencesHandler;
+
 public class SettingsViewModel extends ViewModel {
-
-    private MutableLiveData<String> mText;
-
-    public SettingsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+    public void save(String specialCharacters, Context context) {
+        SharedPreferencesHandler.save(PasswordGenerator.SPECIAL_CHARACTER_KEY, specialCharacters, context);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public String getSpecialCharacters(Context context) {
+        return SharedPreferencesHandler.readString(PasswordGenerator.SPECIAL_CHARACTER_KEY, context);
     }
 }

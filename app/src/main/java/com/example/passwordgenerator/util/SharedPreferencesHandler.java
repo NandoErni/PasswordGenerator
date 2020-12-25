@@ -6,23 +6,29 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SharedPreferencesHandler {
+public final class SharedPreferencesHandler {
 
-    public void save(String key, List<Character> characters, Context context) {
+    public static void save(String key, List<Character> characters, Context context) {
+        save(key, listToString(characters), context);
+    }
+
+    public static void save(String key, String data, Context context) {
         SharedPreferences settings = context.getSharedPreferences(key, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, listToString(characters));
+        editor.putString(key, data);
         editor.apply();
     }
 
-    public List<Character> readCharacterList(String key, Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences(key, Context.MODE_PRIVATE);
-        String out = sharedPref.getString(key, "");
-
-        return stringToList(out);
+    public static List<Character> readCharacterList(String key, Context context) {
+        return stringToList(readString(key, context));
     }
 
-    private List<Character> stringToList(String string) {
+    public static String readString(String key, Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(key, Context.MODE_PRIVATE);
+        return sharedPref.getString(key, "");
+    }
+
+    private static List<Character> stringToList(String string) {
         List<Character> characters = new ArrayList<>();
 
         for (int i = 0; i < string.length(); i++) {
@@ -32,7 +38,7 @@ public class SharedPreferencesHandler {
         return characters;
     }
 
-    private String listToString(List<Character> list) {
+    private static String listToString(List<Character> list) {
         StringBuilder builder = new StringBuilder();
         list.forEach(builder::append);
 
