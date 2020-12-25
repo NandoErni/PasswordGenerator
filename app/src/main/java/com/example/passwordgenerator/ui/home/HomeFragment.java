@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.passwordgenerator.R;
+import com.example.passwordgenerator.util.PasswordGenerationConfig;
+import com.example.passwordgenerator.util.PasswordGenerator;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -34,6 +36,10 @@ public class HomeFragment extends Fragment {
 
         initUI();
 
+        if (homeViewModel.getSpecialCharacters(getContext()).isEmpty()) {
+            homeViewModel.setSpecialCharacters(PasswordGenerator.DEFAULT_SPECIAL_CHARACTERS, getContext());
+        }
+
         return homeView;
     }
 
@@ -42,7 +48,7 @@ public class HomeFragment extends Fragment {
         homeViewModel.getPassword().observe(getViewLifecycleOwner(), textView::setText);
 
         final MaterialButton button = homeView.findViewById(R.id.generate_pw);
-        button.setOnClickListener(v -> homeViewModel.generatePassword(getPasswordConfig()));
+        button.setOnClickListener(v -> generatePassword());
 
         final TextView seekBarLabel = homeView.findViewById(R.id.label_number_of_characters);
         final SeekBar seekBar = homeView.findViewById(R.id.number_of_characters);
@@ -60,12 +66,12 @@ public class HomeFragment extends Fragment {
         });
 
         final FloatingActionButton fab = homeView.findViewById(R.id.copy_password);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                copyPasswordToClipboard();
-            }
-        });
+        fab.setOnClickListener(v -> copyPasswordToClipboard());
+    }
+
+    private void generatePassword() {
+        homeViewModel.updateSpecialCharacters(getContext());
+        homeViewModel.generatePassword(getPasswordConfig());
     }
 
     private PasswordGenerationConfig getPasswordConfig() {

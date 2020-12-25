@@ -1,4 +1,6 @@
-package com.example.passwordgenerator.ui.home;
+package com.example.passwordgenerator.util;
+
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,10 +8,18 @@ import java.util.List;
 import java.util.Random;
 
 public class PasswordGenerator {
+    private static final String SPECIAL_CHARACTER_KEY = "specialCharacterPreference";
+
+    public static final List<Character> DEFAULT_SPECIAL_CHARACTERS = Arrays.asList('$', '#', '&', '!', '%', '*');
+
     private final Random random;
+    private final SharedPreferencesHandler sharedPreferencesHandler;
+    private List<Character> specialCharacters;
 
     public PasswordGenerator() {
         random = new Random();
+        sharedPreferencesHandler = new SharedPreferencesHandler();
+        specialCharacters = new ArrayList<>();
     }
 
     public String generatePassword(PasswordGenerationConfig config) {
@@ -56,14 +66,22 @@ public class PasswordGenerator {
     }
 
     private char getRandomSpecialChar() {
-        final List<Character> specialCharacters = Arrays.asList('$', '#', '&', '!', '%', '*');
         return getRandomElement(specialCharacters);
     }
 
     private Character getRandomElement(List<Character> list) {
         if (list.size() <= 0) {
-            throw new IllegalArgumentException("The list must contain at least one element");
+            throw new IllegalArgumentException("The list must have at least one element.");
         }
         return list.get(random.nextInt(list.size()));
+    }
+
+    public void saveSpecialCharacter(List<Character> specialCharacters, Context context) {
+        sharedPreferencesHandler.save(SPECIAL_CHARACTER_KEY, specialCharacters, context);
+        this.specialCharacters = specialCharacters;
+    }
+
+    public List<Character> readSpecialCharacter(Context context) {
+        return sharedPreferencesHandler.readCharacterList(SPECIAL_CHARACTER_KEY, context);
     }
 }

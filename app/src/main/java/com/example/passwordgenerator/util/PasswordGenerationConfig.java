@@ -1,4 +1,4 @@
-package com.example.passwordgenerator.ui.home;
+package com.example.passwordgenerator.util;
 
 public class PasswordGenerationConfig {
     private final int numOfChars;
