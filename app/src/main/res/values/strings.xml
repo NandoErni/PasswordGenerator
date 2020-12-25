@@ -11,4 +11,6 @@
     <string name="password">Password</string>
     <string name="copyPassword">Copied the password to clipboard.</string>
     <string name="save">Save</string>
+    <string name="special_characters">Special Characters</string>
+    <string name="copies_the_password">Copies the password</string>
 </resources>
