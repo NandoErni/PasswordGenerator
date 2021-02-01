@@ -1,4 +1,4 @@
-package com.example.passwordgenerator.ui.home;
+package com.nandoerni.passwordgenerator.ui.home;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -15,9 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.passwordgenerator.R;
-import com.example.passwordgenerator.util.PasswordGenerationConfig;
-import com.example.passwordgenerator.util.PasswordGenerator;
+import com.nandoerni.passwordgenerator.R;
+import com.nandoerni.passwordgenerator.util.PasswordGenerationConfig;
+import com.nandoerni.passwordgenerator.util.PasswordGenerator;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;

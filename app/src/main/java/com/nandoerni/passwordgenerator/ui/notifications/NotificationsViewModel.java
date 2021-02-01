@@ -1,4 +1,4 @@
-package com.example.passwordgenerator.ui.notifications;
+package com.nandoerni.passwordgenerator.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

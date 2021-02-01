@@ -1,4 +1,4 @@
-package com.example.passwordgenerator;
+package com.nandoerni.passwordgenerator;
 
 import android.app.Application;
 import android.content.Context;

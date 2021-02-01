@@ -1,4 +1,4 @@
-package com.example.passwordgenerator.ui.notifications;
+package com.nandoerni.passwordgenerator.ui.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.passwordgenerator.R;
+import com.nandoerni.passwordgenerator.R;
 
 public class NotificationsFragment extends Fragment {
 

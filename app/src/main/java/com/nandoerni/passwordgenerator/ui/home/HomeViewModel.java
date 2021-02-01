@@ -1,4 +1,4 @@
-package com.example.passwordgenerator.ui.home;
+package com.nandoerni.passwordgenerator.ui.home;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.passwordgenerator.util.PasswordGenerationConfig;
-import com.example.passwordgenerator.util.PasswordGenerator;
+import com.nandoerni.passwordgenerator.util.PasswordGenerationConfig;
+import com.nandoerni.passwordgenerator.util.PasswordGenerator;
 
 import java.util.List;
 
